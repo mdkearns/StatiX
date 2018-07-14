@@ -4,6 +4,11 @@
 
 .header {
 	color: black;
+	font-family: Garamond;
+}
+
+.title {
+	color: rgb(128, 0, 0)
 }
 
 .description {
