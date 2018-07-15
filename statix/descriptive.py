@@ -5,7 +5,7 @@
 # Contact: mattdkearns@gmail.com
 
 
-from math import ceil, sqrt
+from math import ceil, floor, modf, sqrt
 
 
 def mean(data, trim=0, weights=None):
@@ -18,20 +18,20 @@ def mean(data, trim=0, weights=None):
 
     average = 0
 
-    if 0 < trim <= 1:                             # trim data
-        trim_amt = ceil(trim*len(data))
+    if 0 < trim <= 1:  # trim data
+        trim_amt = ceil(trim * len(data))
         data = sorted(data)
-        for i in range(trim_amt):
+        for i in range(int(trim_amt)):
             data.pop(0)
             data.pop()
             if weights:
                 weights.pop(0)
                 weights.pop()
 
-    if weights:                                  # if weighted, compute weighted average
+    if weights:  # if weighted, compute weighted average
         for i in range(len(data)):
             average += data[i] * weights[i]
-    else:                                        # otherwise, compute normal average
+    else:  # otherwise, compute normal average
         for val in data:
             average += val
 
@@ -42,7 +42,6 @@ def median(data):
     """Find and return the median value."""
 
     data = sorted(data[:])
-    median = 0
 
     if len(data) % 2 == 0:
         pop_amt = (len(data) // 2) - 1
@@ -51,7 +50,7 @@ def median(data):
             data.pop(0)
             data.pop()
 
-        median = (data[0] + data[1]) / 2
+        m = (data[0] + data[1]) / 2
 
     else:
         pop_amt = (len(data) // 2)
@@ -60,13 +59,12 @@ def median(data):
             data.pop(0)
             data.pop()
 
-        median = data[0]
+        m = data[0]
 
-    return median
+    return m
 
 
-
-def var(data, isSample=False):
+def var(data, is_sample=False):
     """Compute and return variance of data.
 
     data: a python list-like object
@@ -74,26 +72,27 @@ def var(data, isSample=False):
     """
 
     x_bar = mean(data)
-    variance = 0
+    v = 0
 
     for x in data:
-        variance += ((x - x_bar)**2)
+        v += ((x - x_bar) ** 2)
 
-    if isSample:
-        return variance / (len(data)-1)
+    if is_sample:
+        return v / (len(data) - 1)
     else:
-        return variance / len(data)
+        return v / len(data)
 
 
-def std(data, isSample=False):
+def std(data, is_sample=False):
     """Compute and return standard deviation of data.
 
     data: a python list-like object
     isSample: True/False; default=False
     """
-    return sqrt(var(data, isSample))
+    return sqrt(var(data, is_sample))
 
-def mad(data, isSample=False):
+
+def mad(data, is_sample=False):
     """Compute and return mean-absolute-deviation.
 
     data: a python list-like object
@@ -101,21 +100,49 @@ def mad(data, isSample=False):
     """
 
     x_bar = mean(data)
-    mad = 0
+    m = 0
 
     for x in data:
-        mad += abs(x - x_bar)
+        m += abs(x - x_bar)
 
-    if isSample:
-        return mad / (len(data) - 1)
+    if is_sample:
+        return m / (len(data) - 1)
     else:
-        return mad / len(data)
+        return m / len(data)
 
 
 def get_range(data):
     """Find and return the range."""
 
     return max(data) - min(data)
+
+
+def percentile(data, k):
+    """Calculate and return the kth percentile.
+
+    data: a python list-like object
+    k: the percentile
+    """
+
+    data = sorted(data[:])  # sort copy of data
+    k_index = k * len(data) / 100  # get index of kth value
+    frac, whole = modf(k_index)  # check if frac is > 0
+
+    if frac > 0:
+        per = data[int(floor(k_index))]
+    else:
+        per = (data[int(k_index)] + data[int(k_index) - 1]) / 2
+
+    return per
+
+
+def quantile(data, q):
+    """Calculate and return the kth quantile.
+
+    data: a python list-like object
+    k: the quantile"""
+
+    return percentile(data, q * 100)
 
 
 # create function aliases
