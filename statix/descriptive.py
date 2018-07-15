@@ -4,7 +4,9 @@
 # Author:  Matthew D. Kearns
 # Contact: mattdkearns@gmail.com
 
-from math import ceil
+
+from math import ceil, sqrt
+
 
 def mean(data, trim=0, weights=None):
     """Calculate and return the mean value of the data.
@@ -34,4 +36,21 @@ def mean(data, trim=0, weights=None):
             average += val
 
     return average / len(data)
+
+
+def var(data):
+    """Compute and return variance of data."""
+
+    x_bar = mean(data)
+    variance = 0
+
+    for x in data:
+        variance += ((x - x_bar)**2)
+
+    return variance / (len(data))
+
+
+def std(data):
+    """Compute and return standard deviation of data."""
+    return sqrt(var(data))
 
