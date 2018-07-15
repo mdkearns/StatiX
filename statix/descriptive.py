@@ -65,3 +65,31 @@ def std(data, isSample=False):
     """
     return sqrt(var(data, isSample))
 
+def mad(data, isSample=False):
+    """Compute and return mean-absolute-deviation.
+
+    data: a python list-like object
+    isSample: True/False; default=False
+    """
+
+    x_bar = mean(data)
+    mad = 0
+
+    for x in data:
+        mad += abs(x - x_bar)
+
+    if isSample:
+        return mad / (len(data) - 1)
+    else:
+        return mad / len(data)
+
+
+# create function aliases
+mse = var
+mean_squared_error = var
+variance = var
+l2_norm = std
+euclidean_norm = std
+mean_absolute_deviation = mad
+l1_norm = mad
+manhattan_distance = mad
