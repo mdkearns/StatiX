@@ -38,6 +38,34 @@ def mean(data, trim=0, weights=None):
     return average / len(data)
 
 
+def median(data):
+    """Find and return the median value."""
+
+    data = sorted(data[:])
+    median = 0
+
+    if len(data) % 2 == 0:
+        pop_amt = (len(data) // 2) - 1
+
+        for i in range(pop_amt):
+            data.pop(0)
+            data.pop()
+
+        median = (data[0] + data[1]) / 2
+
+    else:
+        pop_amt = (len(data) // 2)
+
+        for i in range(pop_amt):
+            data.pop(0)
+            data.pop()
+
+        median = data[0]
+
+    return median
+
+
+
 def var(data, isSample=False):
     """Compute and return variance of data.
 
