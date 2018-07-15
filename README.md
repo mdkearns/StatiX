@@ -1,2 +1,3 @@
-# essential-statistics
-Essential statistical knowledge for machine learning/data science learned through python exercises.
+# StatiX
+
+A Python library for making descriptive and inferential statistics easily accesible.
