@@ -112,6 +112,12 @@ def mad(data, isSample=False):
         return mad / len(data)
 
 
+def get_range(data):
+    """Find and return the range."""
+
+    return max(data) - min(data)
+
+
 # create function aliases
 mse = var
 mean_squared_error = var

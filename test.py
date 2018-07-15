@@ -17,3 +17,5 @@ print()
 
 print(d.median(data))
 print(np.median(data))
+
+print(d.get_range(data))
