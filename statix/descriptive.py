@@ -125,7 +125,7 @@ def percentile(data, k):
     """
 
     data = sorted(data[:])  # sort copy of data
-    k_index = k * len(data) / 100  # get index of kth value
+    k_index = k * len(data)  # get index of kth value
     frac, whole = modf(k_index)  # check if frac is > 0
 
     if frac > 0:
@@ -142,7 +142,7 @@ def quantile(data, q):
     data: a python list-like object
     k: the quantile"""
 
-    return percentile(data, q * 100)
+    return percentile(data, q / 100)
 
 
 def iqr(data):
