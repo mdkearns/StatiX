@@ -145,6 +145,12 @@ def quantile(data, q):
     return percentile(data, q * 100)
 
 
+def iqr(data):
+    """Calculate and return the inter-quartile range."""
+
+    return quantile(data, 75) - quantile(data, 25)
+
+
 # create function aliases
 mse = var
 mean_squared_error = var
