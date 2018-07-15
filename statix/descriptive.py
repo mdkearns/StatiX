@@ -16,22 +16,21 @@ def mean(data, trim=0, weighted=False):
 
     average = 0
 
-    # trim data
+    if 0 < trim <= 1: # trim data
 
-    if 0 < trim <= 1:
         trim_amt = ceil(trim*len(data))
-        if trim_amt % 2 !=0:
-            trim_amt += 1
+        data = sorted(data)
 
-    # if weighted, compute weighted average
+        for i in range(trim_amt):
+            data.pop(0)
+            data.pop()
 
-    if weighted:
+    if weighted: # if weighted, compute weighted average
         pass
 
-    # otherwise, compute normal average
+    else: # otherwise, compute normal average
+        for val in data:
+            average += val
 
-    else:
-        pass
-
-    return average
+    return average / len(data)
 
