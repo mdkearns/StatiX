@@ -160,3 +160,4 @@ euclidean_norm = std
 mean_absolute_deviation = mad
 l1_norm = mad
 manhattan_distance = mad
+inter_quartile_range = iqr
