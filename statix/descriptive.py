@@ -38,8 +38,12 @@ def mean(data, trim=0, weights=None):
     return average / len(data)
 
 
-def var(data):
-    """Compute and return variance of data."""
+def var(data, isSample=False):
+    """Compute and return variance of data.
+
+    data: a python list-like object
+    isSample: True/False; default=False
+    """
 
     x_bar = mean(data)
     variance = 0
@@ -47,10 +51,17 @@ def var(data):
     for x in data:
         variance += ((x - x_bar)**2)
 
-    return variance / (len(data))
+    if isSample:
+        return variance / (len(data)-1)
+    else:
+        return variance / len(data)
 
 
-def std(data):
-    """Compute and return standard deviation of data."""
-    return sqrt(var(data))
+def std(data, isSample=False):
+    """Compute and return standard deviation of data.
+
+    data: a python list-like object
+    isSample: True/False; default=False
+    """
+    return sqrt(var(data, isSample))
 
