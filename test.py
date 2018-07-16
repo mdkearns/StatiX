@@ -17,6 +17,6 @@ print("Numpy std:\t\t", round(np.std(data), ndigits=3))
 print()
 
 print("Statix range:\t\t\t", d.get_range(data))
-print("Statix 75th percentile:\t", d.percentile(data, 0.75))
-print("Statix 0.75 quantile:\t", d.quantile(data, 75))
+print("Statix 75th percentile:\t", d.percentile(data, 75))
+print("Statix 0.75 quantile:\t", d.quantile(data, 0.75))
 print("Statix IQR:\t\t\t\t", d.iqr(data))
