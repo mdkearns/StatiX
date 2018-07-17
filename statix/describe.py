@@ -4,9 +4,7 @@
 # Author:  Matthew D. Kearns
 # Contact: mattdkearns@gmail.com
 
-
 from math import ceil, floor, modf, sqrt
-
 
 def mean(data, trim=0, weights=None):
     """Calculate and return the mean value of the data.
@@ -37,7 +35,6 @@ def mean(data, trim=0, weights=None):
 
     return average / len(data)
 
-
 def median(data):
     """Find and return the median value."""
 
@@ -63,7 +60,6 @@ def median(data):
 
     return m
 
-
 def var(data, is_sample=False):
     """Compute and return variance of data.
 
@@ -82,7 +78,6 @@ def var(data, is_sample=False):
     else:
         return v / len(data)
 
-
 def std(data, is_sample=False):
     """Compute and return standard deviation of data.
 
@@ -90,7 +85,6 @@ def std(data, is_sample=False):
     isSample: True/False; default=False
     """
     return sqrt(var(data, is_sample))
-
 
 def mad(data, is_sample=False):
     """Compute and return mean-absolute-deviation.
@@ -110,12 +104,10 @@ def mad(data, is_sample=False):
     else:
         return m / len(data)
 
-
 def get_range(data):
     """Find and return the range."""
 
     return max(data) - min(data)
-
 
 def percentile(data, k):
     """Calculate and return the kth percentile.
@@ -135,7 +127,6 @@ def percentile(data, k):
 
     return per
 
-
 def quantile(data, q):
     """Calculate and return the kth quantile.
 
@@ -144,12 +135,14 @@ def quantile(data, q):
 
     return percentile(data, q * 100)
 
-
 def iqr(data):
     """Calculate and return the interquartile range."""
 
     return quantile(data, 0.75) - quantile(data, 0.25)
 
+def kde():
+    """Kernel Density Estimator."""
+    pass
 
 # create function aliases
 mse = var

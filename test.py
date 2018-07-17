@@ -1,4 +1,7 @@
-import statix.descriptive as d
+import statix.describe as d
+import statix.inference as inf
+import statix.visualize as v
+
 import numpy as np
 
 data = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]

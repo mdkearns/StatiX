@@ -1,4 +1,4 @@
-from descriptive import *
-from inferential import *
+from describe import *
+from inference import *
 
 name = 'statix'
